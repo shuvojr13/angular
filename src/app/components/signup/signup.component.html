@@ -1,0 +1,91 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md border border-blue-200">
+    <h2 class="text-2xl font-bold text-center mb-6 text-blue-600 underline">Sign Up</h2>
+    <form #form="ngForm">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+          Full Name
+        </label>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          #name="ngModel"
+          [(ngModel)]="user.name"
+          class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+          placeholder="Enter your full name"
+          required
+        />
+      </div>
+      <div class="text-red-500 bg-red-50 text-center font-bold">
+            @if((name.touched || name.dirty) && name.errors?.["required"]){
+                <span>Please enter your name</span>
+            }
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+          Email Address
+        </label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          [(ngModel)]="user.email"
+          class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+          placeholder="Enter your email"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="password"
+        >
+          Password
+        </label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          [(ngModel)]="user.password"
+          class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+          placeholder="Enter your password"
+        />
+        {{user.password}}
+      </div>
+      <div class="mb-6">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="confirmPassword"
+        >
+          Confirm Password
+        </label>
+        <input
+          id="confirmPassword"
+          type="password"
+          name="password"
+          [(ngModel)]="user.password"
+          class="w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+          placeholder="Confirm your password"
+        />
+      </div>
+      <div class="flex items-center justify-between">
+        <button
+          type="submit"
+          (click)="onSubmit()"
+          [disabled]="form.invalid"
+          class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+        >
+          @if(form.invalid){
+            Disabled
+        }@else {
+            Sign Up
+        }
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div>
+    {{formValue| json }}
+</div>
